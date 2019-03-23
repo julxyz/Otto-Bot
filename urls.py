@@ -1,0 +1,7 @@
+botpp = "https://www.bw-discount.de/media/image/04/d6/01/170425-Flagge-90x150-Deutsches-Reich-mit-Wappen_600x600.jpg"
+overpassdoc = "https://docs.google.com/document/d/17uOvVjUI5mXfMhPQP0F2HtrmpyD76M-lMdjyZFeiego/edit#heading=h.pyvrqqbwfhe0"
+overpassicon = "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9Q1LO5kNoBhSQl-fROuh28rQR1R2KQFoprOrFAh21uHYcC5R09C3hoeO2aOtZr-DkG1U7Zx037mX89X0jACw_0poNzz0JYfBIFI9aF_R_1O7l7jxxcjrRs2KDss/256fx256f"
+miragedoc = "https://docs.google.com/document/d/17uOvVjUI5mXfMhPQP0F2HtrmpyD76M-lMdjyZFeiego/edit#heading=h.b5tygt5ez7s2"
+mirageicon = "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9Q1LO5kNoBhSQl-fROuh28rQR1R2KQFoprOrFAppwfLPdAJO7c6xkc7exfOhZeOEwjkFsJIn07-Zrdzwjgft_hY6Y2n6LIOWIVJqaVCD-AS2366x0kUGiqtn/256fx256f"
+nukedoc = "https://docs.google.com/document/d/17uOvVjUI5mXfMhPQP0F2HtrmpyD76M-lMdjyZFeiego/edit#heading=h.yan5tbuwn0t1"
+nukeicon = "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9Q1LO5kNoBhSQl-fROuh28rQR1R2KQFoprOrFAl12Pb3fTxQ69n4ldXZxPagNb6AwWkAusYl2O-W9NWsjQXmrRBqNzv3LY_DJA85NV2CqE_-n7muz2Bucw/256fx256f"
