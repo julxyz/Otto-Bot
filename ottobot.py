@@ -440,7 +440,7 @@ async def on_ready():
     bot.loop.create_task(calendar.on_event())
     bot.loop.create_task(level.resetPrevious())
     bot.loop.create_task(functions.jokes())
-    bot.loop.create_task(functions.steamNews())
+    #bot.loop.create_task(functions.steamNews())
 
 @bot.event
 async def on_message(message):
