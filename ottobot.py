@@ -38,7 +38,7 @@ def nowtime():
 print("[{0}] loading ...".format(st()))
 
 #stupid variables
-TOKEN = "NTI5OTY1NzYzNTk2MTI0MTcw.Dw4kEA.lve-qyVMZg4nOZDCTMmBoboXWbM" #discord token
+TOKEN = os.environ["TOKEN"] #discord token
 bot = discord.Client() #yes
 bot_prefix = "!" #self explenatory
 timeout = 600 #calendar refresh rate (recommended 900 (15mins))
@@ -113,7 +113,7 @@ class commandclass:
             store = file.Storage('token.json')
             creds = store.get()
             if not creds or creds.invalid:
-                flow = client.flow_from_clientsecrets('credentials.json', self.scopes)
+                flow = client.flow_from_clientsecrets(os.environ["credentials"], self.scopes)
                 creds = tools.run_flow(flow, store)
             service = build('calendar', 'v3', http=creds.authorize(Http()))
 
@@ -244,7 +244,11 @@ class commandclass:
             loop = asyncio.get_event_loop()
             rule34 = rule34.Rule34(loop)
             url = await rule34.getImageURLS(searchterm)
-            return random.choice(url)
+            try:
+                return random.choice(url)
+            except TypeError:
+                print("[{0}] found nothing".format(st()))
+                return 0
 
         async def getjoke(self):
             r = requests.get('https://icanhazdadjoke.com', headers={"Accept":"application/json"})
@@ -335,8 +339,11 @@ class commandclass:
         tag = message.content[1:].split(' ', 1)
         await bot.purge_from(message.channel, limit=1)
         url = await functions.searchr34(tag[1])
-        await bot.send_message(message.channel, content=url)
-        print("[{0}] sent r34 for {1}".format(st(), tag[1]))
+        if url != 0:
+            await bot.send_message(message.channel, content=url)
+            print("[{0}] sent r34 for {1}".format(st(), tag[1]))
+        else:
+            pass
 
     async def nuke(self, message, permlevel):
         #map strats
