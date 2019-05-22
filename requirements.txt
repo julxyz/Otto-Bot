@@ -4,3 +4,4 @@ google-auth-oauthlib
 discord
 python-dateutil
 oauth2client
+rule34
