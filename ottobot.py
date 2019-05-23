@@ -85,17 +85,17 @@ class commandclass:
 
         async def me(self, message):
             #ffa yourself
-            await bot.purge_from(message.channel, limit=1)
+            await message.channel.purge(limit=1)
             amount, randomtype = await self.gettype()
-            await bot.send_message(message.channel, "{0}\n Mach bis morgen um *{1} Uhr* {2} {3}!".format(message.author.mention, nowtime(), amount, randomtype))
+            await message.channel.send("{0}\n Mach bis morgen um *{1} Uhr* {2} {3}!".format(message.author.mention, nowtime(), amount, randomtype))
             print("[{0}] gave {1} FFA task: {2} {3}".format(st(), message.author, amount, randomtype))
 
         async def all(self, message):
             #ffa everyone with certain role
-            await bot.purge_from(message.channel, limit=1)
+            await message.channel.purge(limit=1)
             role = 544909084021882880 #get role "Nazbol Hq" by id
             amount, randomtype = await self.gettype()
-            await bot.send_message(message.channel, "<@&{0}>\nBis morgen *{1} Uhr* mach jeder {2} {3}!".format(role, nowtime(), amount, randomtype))
+            await message.channel.send("<@&{0}>\nBis morgen *{1} Uhr* mach jeder {2} {3}!".format(role, nowtime(), amount, randomtype))
             print("[{0}] gave everyone FFA task: {1} {2}".format(st(), amount, randomtype))
 
     class calendarclass:
@@ -174,7 +174,7 @@ class commandclass:
                 embed.add_field(name="‏‏‏ ‏‏‏", value=calendar_event[5], inline=False)
                 embed.set_thumbnail(url="https://www.freeiconspng.com/download/19230")
                 embed.set_footer(text="brought to you by jul")
-                await bot.send_message(channel, "@here", embed=embed)
+                await channel.send("@here", embed=embed)
             else:
                 print("[{0}] calendar: didn't echo (I feel so sleepy)".format(st()))
                 pass
@@ -188,7 +188,7 @@ class commandclass:
             embed.add_field(name="‏‏‏ ‏‏‏", value=calendar_event[5], inline=False)
             embed.set_thumbnail(url="https://www.freeiconspng.com/download/19230")
             embed.set_footer(text="brought to you by jul")
-            await bot.send_message(message.channel, "{0}".format(whotomention), embed=embed)
+            await message.channel.send("{0}".format(whotomention), embed=embed)
 
     class levelsystem:
 
@@ -264,7 +264,7 @@ class commandclass:
                 embed=discord.Embed()
                 embed.add_field(name="Here is your joke-to-counter-toxicity™:", value="*{0}*".format(str(joke)), inline=False)
                 embed.set_footer(text="brought to you by icanhazdadjoke.com")
-                await bot.send_message(channel, embed=embed)
+                await channel.send(embed=embed)
                 print("[{0}] sent joke".format(st()))
                 await asyncio.sleep(14400)
 
@@ -295,7 +295,7 @@ class commandclass:
                 channel = bot.get_channel(ids.server["newsChannel"])
                 embed=discord.Embed(title=title, url =articleLink, description=preview, color=0x5bffff)
                 embed.set_author(name=publication)
-                await bot.send_message(channel, "Here is your latest news:", embed=embed)
+                await channel.send("Here is your latest news:", embed=embed)
                 f = open("newsid", "w")
                 f.write(newsId)
                 f.close()
@@ -307,15 +307,15 @@ class commandclass:
         
     async def help(self, message, permlevel):
         #sends message with all commands from lists.py
-        await bot.purge_from(message.channel, limit=1)
-        await bot.send_message(message.channel, '{0}'.format("".join(lists.helplist)))
+        await message.channel.purge(limit=1)
+        await message.channel.send('{0}'.format("".join(lists.helplist)))
         print("[{0}] sent help".format(st()))
     
     async def opinion(self, message, permlevel):
         #random bs
         msg = random.choice(lists.opinions)
-        await bot.purge_from(message.channel, limit=1)
-        await bot.send_message(message.channel, '{0}'.format(msg))
+        await message.channel.purge(limit=1)
+        await message.channel.send('{0}'.format(msg))
         print("[{0}] gave opinion".format(st()))
             
     async def ffa(self, message, permlevel):
@@ -326,64 +326,64 @@ class commandclass:
     async def stop(self, message, permlevel):
         #stops the bot
         if permlevel == 2:
-            await bot.purge_from(message.channel, limit=1)
+            await message.channel.purge(limit=1)
             await bot.logout()
             print("                      ----------------------------------------\n[{0}] ended\n\n\nplease restart the bot".format(st()))
         else:
-            await bot.send_message(message.channel, "{0} You do not have the permissions to use this command".format(message.author.mention))
+            await message.channel.send("{0} You do not have the permissions to use this command".format(message.author.mention))
             await asyncio.sleep(2)
-            await bot.purge_from(message.channel, limit=1)
+            await message.channel.purge(limit=1)
     
     async def r34(self, message, permlevel):
         #r34 command --> searchr34(tag)
         tag = message.content[1:].split(' ', 1)
-        await bot.purge_from(message.channel, limit=1)
+        await message.channel.purge(limit=1)
         url = await functions.searchr34(tag[1])
         if url != 0:
-            await bot.send_message(message.channel, content=url)
+            await message.channel.send(content=url)
             print("[{0}] sent r34 for {1}".format(st(), tag[1]))
         else:
             pass
 
     async def nuke(self, message, permlevel):
         #map strats
-        await bot.purge_from(message.channel, limit=1)
+        await message.channel.purge(limit=1)
         embed=discord.Embed(title="Go here to view your Nuke strats.", url=urls.nukedoc, color=0xfede01)
         embed.set_author(name="Nuke strats", url=urls.nukedoc, icon_url=urls.botpp)
         embed.set_thumbnail(url=urls.nukeicon)
         embed.set_footer(text="brought to you by jul")
-        await bot.send_message(message.channel, "{0}".format(message.author.mention), embed=embed)
+        await message.channel.send("{0}".format(message.author.mention), embed=embed)
         print("[{0}] sent nuke strats".format(st()))
 
     async def mirage(self, message, permlevel):
         #map strats
-        await bot.purge_from(message.channel, limit=1)
+        await message.channel.purge(limit=1)
         embed=discord.Embed(title="Go here to view your Mirage strats.", url=urls.miragedoc, color=0x30e9e4)
         embed.set_author(name="Mirage strats", url=urls.miragedoc, icon_url=urls.botpp)
         embed.set_thumbnail(url=urls.mirageicon)
         embed.set_footer(text="brought to you by jul")
-        await bot.send_message(message.channel, "{0}".format(message.author.mention), embed=embed)
+        await message.channel.send("{0}".format(message.author.mention), embed=embed)
         print("[{0}] sent mirage strats".format(st()))
 
     async def overpass(self, message, permlevel):
         #map strats
-        await bot.purge_from(message.channel, limit=1)
+        await message.channel.purge(limit=1)
         embed=discord.Embed(title="Go here to view your Overpass strats.", url=urls.overpassdoc, color=0x000000)
         embed.set_author(name="Overpass strats", url=urls.overpassdoc, icon_url=urls.botpp)
         embed.set_thumbnail(url=urls.overpassicon)
         embed.set_footer(text="brought to you by jul")
-        await bot.send_message(message.channel, "{0}".format(message.author.mention), embed=embed)
+        await message.channel.send("{0}".format(message.author.mention), embed=embed)
         print("[{0}] sent overpass strats".format(st()))
 
     async def event(self, message, permlevel):
         #giveevent @user
-        await bot.purge_from(message.channel, limit=1)
+        await message.channel.purge(limit=1)
         await calendar.giveevent(message, message.author.mention)
         print("[{0}] sent event @user".format(st()))
 
     async def echoevent(self, message, permlevel):
         #giveevent @here
-        await bot.purge_from(message.channel, limit=1)
+        await message.channel.purge(limit=1)
         await calendar.giveevent(message, "@here")
         print("[{0}] echoed event (request by user)".format(st()))
 
@@ -391,38 +391,38 @@ class commandclass:
         #clear messages
         if permlevel >= 1:
             amount = message.content.strip('{0}clear'.format(bot_prefix))
-            await bot.purge_from(message.channel, limit=1)
-            await bot.send_message(message.channel, "Clearing...")
+            await message.channel.purge(limit=1)
+            await message.channel.send("Clearing...")
             try:
                 amount = int(amount)
                 if amount < 51:
                     if amount > 0:
                         try:
-                            await bot.purge_from(message.channel, limit=amount+1)
+                            await message.channel.purge(limit=amount+1)
                         except discord.errors.HTTPException:
-                            await bot.purge_from(message.channel, limit=1)
-                            await bot.send_message(message.channel, "Unable to delete message")
+                            await message.channel.purge(limit=1)
+                            await message.channel.send("Unable to delete message")
                             await asyncio.sleep(2)
-                            await bot.purge_from(message.channel, limit=1)
-                        await bot.send_message(message.channel, "Deleted {0} messages".format(amount))
+                            await message.channel.purge(limit=1)
+                        await message.channel.send("Deleted {0} messages".format(amount))
                         print("[{1}] Deleted {0} messages".format(amount, st()))
                         await asyncio.sleep(2)
-                        await bot.purge_from(message.channel, limit=1)
+                        await message.channel.purge(limit=1)
                     else:
-                        await bot.purge_from(message.channel, limit=1)
-                        await bot.send_message(message.channel, "Usage : !clear <number between 1-50>")
+                        await message.channel.purge(limit=1)
+                        await message.channel.send("Usage : !clear <number between 1-50>")
                 else:
-                    await bot.purge_from(message.channel, limit=1)
-                    await bot.send_message(message.channel, "Usage : !clear <number between 1-50>")
+                    await message.channel.purge(limit=1)
+                    await message.channel.send("Usage : !clear <number between 1-50>")
             except ValueError:
-                await bot.purge_from(message.channel, limit=1)
-                await bot.send_message(message.channel, "Usage : !clear <number between 1-50>")
+                await message.channel.purge(limit=1)
+                await message.channel.send("Usage : !clear <number between 1-50>")
         else:
-            await bot.send_message(message.channel, "{0} You do not have the permissions to use this command".format(message.author.mention))
+            await message.channel.send("{0} You do not have the permissions to use this command".format(message.author.mention))
             await asyncio.sleep(2)
-            await bot.purge_from(message.channel, limit=1)
+            await message.channel.purge(limit=1)
 
-    async def play(self, message, permlevel):
+    """ async def play(self, message, permlevel):
         #plays youtube video in users voicechannel
         global voice
         url = message.content[1:].split(' ', 1)
@@ -432,7 +432,7 @@ class commandclass:
             await voice.disconnect()  
             voice = await bot.join_voice_channel(message.author.voice.voice_channel)
         player = await voice.create_ytdl_player(url = url[1])
-        player.start()
+        player.start() """
 
 commands = commandclass()
 getffa = commands.ffaclass()
@@ -443,7 +443,7 @@ functions = commands.commandfunctions()
 @bot.event
 async def on_ready():
     print("[{0}] bot ready".format(st()))
-    await bot.change_presence(game=discord.Game(name="the Kaiserreich™"))
+    await bot.change_presence(activity=discord.Activity(name="the Kaiserreich™"))
     bot.loop.create_task(calendar.on_event())
     bot.loop.create_task(level.resetPrevious())
     bot.loop.create_task(functions.jokes())
@@ -470,7 +470,7 @@ async def on_message(message):
 @bot.event 
 async def on_member_join(member):
     channel = bot.get_channel(ids.server["jokeChannel"])
-    await bot.send_message(channel, "Taking over the world™\nWelcome {0}.".format(member.mention))
+    await channel.send("Taking over the world™\nWelcome {0}.".format(member.mention))
     print("[{0}] said hi".format(st()))
 
 @bot.event
@@ -481,7 +481,7 @@ async def on_member_ban(member):
 
 try:
     bot.run(TOKEN)
-except aiohttp.errors.ClientOSError:
+except Exception:
     print("[{0}] !!! unable to connect to discord !!!".format(st()))
 
 print("done!")
