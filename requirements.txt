@@ -1,7 +1,11 @@
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
+<<<<<<< HEAD
 discord.py[voice]
+=======
+discord
+>>>>>>> parent of 0a9ce37... fix?
 python-dateutil
 oauth2client
 rule34
