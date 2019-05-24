@@ -113,6 +113,7 @@ class commandclass:
             # time.
             with open('calendartoken.json', 'w') as outfile:  
                 json.dump(os.environ["calendartoken"], outfile)
+            print(os.environ["calendartoken"])
             store = file.Storage("calendartoken.json")
             creds = store.get()
             if not creds or creds.invalid:
@@ -449,7 +450,7 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name="the Kaiserreich™"))
     bot.loop.create_task(calendar.on_event())
     bot.loop.create_task(level.resetPrevious())
-    bot.loop.create_task(functions.jokes())
+    #bot.loop.create_task(functions.jokes())
     #bot.loop.create_task(functions.steamNews())
 
 @bot.event
