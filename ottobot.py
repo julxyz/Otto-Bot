@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 import sys
+import json
 import urls
 import sched
 import aiohttp
@@ -110,10 +111,13 @@ class commandclass:
             # The file token.json stores the user's access and refresh tokens, and is
             # created automatically when the authorization flow completes for the first
             # time.
-            creds = os.environ["calendartoken"]
-            #if not creds or creds.invalid:
-            #    flow = client.flow_from_clientsecrets(os.environ["credentials"], self.scopes)
-            #    creds = tools.run_flow(flow, store)
+            with open('calendartoken.json', 'w') as outfile:  
+                json.dump(os.environ["calendartoken"], outfile)
+            store = file.Storage("calendartoken.json")
+            creds = store.get()
+            if not creds or creds.invalid:
+                flow = client.flow_from_clientsecrets(os.environ["credentials"], self.scopes)
+                creds = tools.run_flow(flow, store)
             service = build('calendar', 'v3', http=creds.authorize(Http()))
 
             # Call the Calendar API
