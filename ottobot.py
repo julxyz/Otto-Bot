@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 import sys
+import json
 import urls
 import sched
 import aiohttp
@@ -110,7 +111,10 @@ class commandclass:
             # The file token.json stores the user's access and refresh tokens, and is
             # created automatically when the authorization flow completes for the first
             # time.
-            store = os.environ["calendartoken"]
+            with open('calendartoken.json', 'w') as outfile:  
+                json.dump(os.environ["calendartoken"], outfile)
+            print(os.environ["calendartoken"])
+            store = file.Storage("calendartoken.json")
             creds = store.get()
             if not creds or creds.invalid:
                 flow = client.flow_from_clientsecrets(os.environ["credentials"], self.scopes)
@@ -444,7 +448,7 @@ functions = commands.commandfunctions()
 async def on_ready():
     print("[{0}] bot ready".format(st()))
     await bot.change_presence(game=discord.Game(name="the Kaiserreich™"))
-    bot.loop.create_task(calendar.on_event())
+    #bot.loop.create_task(calendar.on_event())
     bot.loop.create_task(level.resetPrevious())
     bot.loop.create_task(functions.jokes())
     #bot.loop.create_task(functions.steamNews())
