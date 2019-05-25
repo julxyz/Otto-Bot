@@ -448,7 +448,7 @@ functions = commands.commandfunctions()
 async def on_ready():
     print("[{0}] bot ready".format(st()))
     await bot.change_presence(game=discord.Game(name="the Kaiserreich™"))
-    #bot.loop.create_task(calendar.on_event())
+    bot.loop.create_task(calendar.on_event())
     bot.loop.create_task(level.resetPrevious())
     bot.loop.create_task(functions.jokes())
     #bot.loop.create_task(functions.steamNews())
