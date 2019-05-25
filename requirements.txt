@@ -5,3 +5,4 @@ discord.py == 0.16.6
 python-dateutil
 oauth2client
 rule34
+Django

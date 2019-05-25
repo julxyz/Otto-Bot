@@ -8,6 +8,7 @@ import urls
 import time
 import lists
 import sched
+import django
 import random
 import aiohttp
 import discord
@@ -24,6 +25,9 @@ from oauth2client import file, client, tools
 from googleapiclient.discovery import build
 
 # just btw frick python ok thx
+
+__version__ = 0.1
+__author__ = "jul"
 
 # pylint: disable=no-member
 
