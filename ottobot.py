@@ -113,6 +113,7 @@ class commandclass:
             # time.
             with open('calendartoken.json', 'w+') as outfile:  
                 json.dump(os.environ["calendartoken"], outfile)
+                outfile.close()
             #print(os.environ["calendartoken"])
             store = file.Storage("calendartoken.json")
             creds = store.get()
