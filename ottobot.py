@@ -111,8 +111,9 @@ class commandclass:
             # The file token.json stores the user's access and refresh tokens, and is
             # created automatically when the authorization flow completes for the first
             # time.
-            with open('calendartoken.json', 'w+') as outfile:  
-                json.dump(os.environ["calendartoken"], outfile)
+            cfile = open("calendartoken.json", "w")  
+            json.dump(json.loads(os.environ["calendartoken"]), cfile)
+            cfile.close()
             #print(os.environ["calendartoken"])
             store = file.Storage("calendartoken.json")
             creds = store.get()
@@ -448,7 +449,7 @@ functions = commands.commandfunctions()
 async def on_ready():
     print("[{0}] bot ready".format(st()))
     await bot.change_presence(game=discord.Game(name="the Kaiserreich™"))
-    #bot.loop.create_task(calendar.on_event())
+    bot.loop.create_task(calendar.on_event())
     bot.loop.create_task(level.resetPrevious())
     bot.loop.create_task(functions.jokes())
     #bot.loop.create_task(functions.steamNews())
