@@ -112,7 +112,7 @@ class commandclass:
             # created automatically when the authorization flow completes for the first
             # time.
             cfile = open("calendartoken.json")  
-            json.dump(json.load(os.environ["calendartoken"]), cfile)
+            json.dump(json.loads(os.environ["calendartoken"]), cfile)
             cfile.close()
             #print(os.environ["calendartoken"])
             store = file.Storage("calendartoken.json")
