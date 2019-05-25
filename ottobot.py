@@ -111,9 +111,9 @@ class commandclass:
             # The file token.json stores the user's access and refresh tokens, and is
             # created automatically when the authorization flow completes for the first
             # time.
-            with open('calendartoken.json', 'w+') as outfile:  
-                json.dump(os.environ["calendartoken"], outfile)
-                outfile.close()
+            cfile = open("calendartoken.json")  
+            json.dump(os.environ["calendartoken"], cfile)
+            cfile.close()
             #print(os.environ["calendartoken"])
             store = file.Storage("calendartoken.json")
             creds = store.get()
