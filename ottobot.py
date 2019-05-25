@@ -1,20 +1,20 @@
 from __future__ import print_function
 
 import os
+import ids
 import sys
 import json
 import urls
+import time
+import lists
 import sched
+import random
 import aiohttp
 import discord
-import random
 import asyncio
-import requests
 import calendar
-import ids as ids
+import requests
 import steamgrab
-import lists as lists
-import time as time
 import dateutil.parser
 from httplib2 import Http
 from datetime import datetime
@@ -24,6 +24,8 @@ from oauth2client import file, client, tools
 from googleapiclient.discovery import build
 
 # just btw frick python ok thx
+
+# pylint: disable=no-member
 
 #timestamps
 def st():
